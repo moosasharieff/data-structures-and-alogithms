@@ -65,4 +65,97 @@ class LinkedList:
             self.head = None
             self.tail = None
 
+    def prepend(self, value):
+        """
+        Edge cases:
+        1. If there is no Node in LL
 
+        :param value:
+        :return: True
+        """
+        new_node = Node(value)
+        if self.head is None or self.length == 0:
+            self.head = new_node
+            self.tail = new_node
+        else:
+            new_node.next = self.head
+            self.head = new_node
+
+        self.length += 1
+        return True
+
+
+    def pop_first(self):
+        """
+        Edge cases:
+        1. If there is no node in LL
+        2. If there is only one node in LL
+        3. If there are 1+ nodes in LL
+        :return: Boolean
+        """
+        if self.head is None or self.length == 0:
+            return False
+
+        # Handling 1+ Node cases
+        temp = self.head
+        self.head = self.head.next
+        temp.next = None
+        self.length -= 1
+
+        # if case only 1 node is left
+        if self.length == 0 or self.head is None:
+            self.tail = None
+
+        return True
+
+    def get(self, index):
+        """
+
+        :param index:
+        :return: None or Temp<LinkedList>
+        """
+        # Condition
+        if index < 0 or index > self.length:
+            return None
+        temp = self.head
+        for _ in range(index):
+            temp = temp.next
+        return temp
+
+    def insert(self, index, value):
+        """
+        # Edge Case:
+        1. If index is 0 or greater than LL Length
+        2. Use prepend to add in beginning
+        3. Use append to add in the end
+        4. Need logic to add in between
+        :param index:
+        :param value:
+        :return: Boolean
+        """
+        # 1. If index is 0 or greater than LL Length
+        if index < 0 or index > self.length:
+            return False
+        # 2. Use prepend to add in beginning
+        elif index == 0:
+            return self.prepend(value)
+        elif index == self.length -1:
+            return self.append(value)
+        else:
+            new_node = Node(value)
+            temp = self.get(index-1)
+            new_node.next = temp.next
+            temp = new_node
+            self.length += 1
+            return temp
+
+    def set(self, position, value):
+        """
+        :param index:
+        :param value:
+        :return:
+        """
+
+        temp = self.get(position - 1)
+        temp.value = value
+        return temp
