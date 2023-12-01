@@ -154,13 +154,14 @@ class LinkedList:
         return True
 
 
-    def set_value(self, position, value):
+    def set_value(self, index, value):
         """
         :param index:
         :param value:
         :return:
         """
-
-        temp = self.get(position - 1)
-        temp.value = value
-        return temp
+        temp = self.get(index)
+        if temp:
+            temp.value = value
+            return True
+        return False

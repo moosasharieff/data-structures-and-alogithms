@@ -109,13 +109,13 @@ class Test_LinkedList(TestCase):
 
     def test_set_value(self):
         # Editing value at 0 Index
-        self.ll.set_value(1, 4)
+        self.ll.set_value(0, 4)
         self.assertEqual(self.ll.head.value, 4)
 
         # Editing value at in middle
         new_ll = LinkedList(1)
         new_ll.append(2)
         new_ll.append(3)
-        self.ll.set_value(2, 5)
-        self.assertEqual(self.ll.get(2), 5)
+        new_ll.set_value(2, 5)
+        self.assertEqual(new_ll.get(2).value, 5)
 
