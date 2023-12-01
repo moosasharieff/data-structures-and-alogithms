@@ -87,7 +87,6 @@ class Test_LinkedList(TestCase):
         self.assertEqual(self.ll.length, 4)
 
     def test_insert(self):
-        # Todo: Need to fix these test cases
         """
             # Test Case:
             1. If index is 0 or greater than LL Length
@@ -108,15 +107,15 @@ class Test_LinkedList(TestCase):
         self.assertEqual(self.ll.tail.value, 7)
 
 
-    def test_set(self):
+    def test_set_value(self):
         # Editing value at 0 Index
-        self.ll.set(1, 4)
+        self.ll.set_value(1, 4)
         self.assertEqual(self.ll.head.value, 4)
 
         # Editing value at in middle
         new_ll = LinkedList(1)
         new_ll.append(2)
         new_ll.append(3)
-        self.ll.set(2, 5)
+        self.ll.set_value(2, 5)
         self.assertEqual(self.ll.get(2), 5)
 

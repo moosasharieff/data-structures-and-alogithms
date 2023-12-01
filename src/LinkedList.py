@@ -34,6 +34,7 @@ class LinkedList:
             self.tail = new_node
 
         self.length += 1
+        return True
 
     def pop(self):
         """
@@ -111,7 +112,7 @@ class LinkedList:
     def get(self, index):
         """
 
-        :param index:
+        :param index: <int>
         :return: None or Temp<LinkedList>
         """
         # Condition
@@ -133,23 +134,27 @@ class LinkedList:
         :param value:
         :return: Boolean
         """
-        # 1. If index is 0 or greater than LL Length
         if index < 0 or index > self.length:
             return False
-        # 2. Use prepend to add in beginning
-        elif index == 0:
-            return self.prepend(value)
-        elif index == self.length -1:
-            return self.append(value)
-        else:
-            new_node = Node(value)
-            temp = self.get(index-1)
-            new_node.next = temp.next
-            temp = new_node
-            self.length += 1
-            return temp
 
-    def set(self, position, value):
+        # 2. Use prepend to add in beginning
+        if index == 0:
+            return self.prepend(value)
+
+        # 3. Use append to add in the end
+        if index == self.length:
+            return self.append(value)
+
+        # 4. Need logic to add in between
+        new_node = Node(value)
+        temp = self.get(index - 1)
+        new_node.next = temp.next
+        temp.next = new_node
+        self.length += 1
+        return True
+
+
+    def set_value(self, position, value):
         """
         :param index:
         :param value:
