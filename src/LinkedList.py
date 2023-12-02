@@ -66,6 +66,8 @@ class LinkedList:
             self.head = None
             self.tail = None
 
+        return temp
+
     def prepend(self, value):
         """
         Edge cases:
@@ -95,7 +97,7 @@ class LinkedList:
         :return: Boolean
         """
         if self.head is None or self.length == 0:
-            return False
+            return None
 
         # Handling 1+ Node cases
         temp = self.head
@@ -107,7 +109,7 @@ class LinkedList:
         if self.length == 0 or self.head is None:
             self.tail = None
 
-        return True
+        return temp
 
     def get(self, index):
         """
@@ -165,3 +167,34 @@ class LinkedList:
             temp.value = value
             return True
         return False
+
+    def remove(self, index):
+        """
+        Edge cases:
+        0. If index provided is out of range
+        1. If there is no node in LL
+        2. If we are to remove 1st node in LL
+        3. If we are remove last node in LL
+        4. If we are to remove middle node in the LL
+        :param index:
+        :return: None or Node<LikedList>
+        """
+        # 0. If index provided is out of range
+        if index < 0 or index > self.length:
+            return None
+
+        # 2. If we are to remove 1st node in LL
+        if index == 0:
+            return self.pop_first()
+
+        # 3. If we are remove last node in LL
+        if index == self.length:
+            return self.pop()
+
+        # 4. If we are to remove middle node in the LL
+        pre = self.get(index-1)
+        temp = pre.next
+        pre.next = temp.next
+        temp.next = None
+        self.length -= 1
+        return temp

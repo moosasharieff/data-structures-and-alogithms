@@ -66,9 +66,6 @@ class Test_LinkedList(TestCase):
         self.ll.pop()
         self.assertIsNone(self.ll.head)
 
-        # 1. if there is no node in LL
-        self.assertFalse(self.ll.head)
-
         # 3. if there is 1+ nodes in LL
         self.ll.append(1)
         self.ll.append(2)
@@ -119,3 +116,27 @@ class Test_LinkedList(TestCase):
         new_ll.set_value(2, 5)
         self.assertEqual(new_ll.get(2).value, 5)
 
+    def test_remove(self):
+        """
+            Test cases:
+            0. If index provided is out of range
+            1. If there is no node in LL
+            2. If we are to remove 1st node in LL
+            3. If we are remove last node in LL
+            4. If we are to remove middle node in the LL
+        """
+        # 0. If index provided is out of range
+        self.assertIsNone(self.ll.remove(-1))
+        self.assertIsNone(self.ll.remove(2))
+
+        # 2. If we are to remove 1st node in LL
+        self.assertEqual(self.ll.remove(0).value, 1)
+        # 1. If there is no node in LL
+        self.assertIsNone(self.ll.remove(0))
+        self.assertIsNone(self.ll.remove(1))
+        # 3. If we are remove last node in LL
+        self.ll.append(7)
+        self.ll.append(8)
+        self.ll.append(9)
+        self.assertEqual(self.ll.remove(1).value, 8)
+        self.assertEqual(self.ll.remove(2).value, 9)
