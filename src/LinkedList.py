@@ -198,3 +198,60 @@ class LinkedList:
         temp.next = None
         self.length -= 1
         return temp
+
+    def reverse(self):
+        """ Reversing this LinkedList """
+
+        # Chaning head and tail of LinkedList
+        temp = self.head
+        self.head = self.tail
+        self.tail = temp
+
+        after = temp.next
+        before = None
+
+        # Rotating nodes to reverse
+        for _ in range(self.length):
+            after = temp.next
+            temp.next = before
+            before = temp
+            temp = after
+
+    def find_middle_of_list(self):
+        slow = self.head
+        fast = self.head
+
+        while fast and fast.next :
+            slow = slow.next
+            fast = fast.next.next
+
+        return slow
+
+    def is_ll_loop(self):
+        """
+
+        :return:Boolean
+        """
+        slow = self.head
+        fast = self.head.next
+        while fast and fast.next:
+            if slow == fast.next:
+                return True
+            else:
+                slow = slow.next
+                fast = fast.next.next
+        return False
+
+    def convert_binary_to_int(self):
+        """
+        Converting binary values in the Node to Integer
+        :return: int
+        """
+        n = ''
+        temp = self.head
+        while temp :
+            v = temp.value
+            n = n + str(v)
+            temp = temp.next
+        # converting binary to integer
+        return int(n, 2)

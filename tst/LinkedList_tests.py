@@ -1,5 +1,4 @@
-
-
+import unittest
 from unittest import TestCase
 from src.LinkedList import LinkedList
 
@@ -140,3 +139,33 @@ class Test_LinkedList(TestCase):
         self.ll.append(9)
         self.assertEqual(self.ll.remove(1).value, 8)
         self.assertEqual(self.ll.remove(2).value, 9)
+
+    def test_reverse(self):
+
+        # Appending nodes to LL
+        self.ll.append(2)
+        self.ll.append(3)
+        self.ll.append(4)
+        # Reversing LL
+        self.ll.reverse()
+        # Test Cases
+        self.assertEqual(self.ll.head.value, 4)
+        self.assertEqual(self.ll.tail.value, 1)
+
+    def test_find_middle_of_list(self):
+        self.ll.append(2)
+        self.ll.append(3)
+        self.ll.append(4)
+        self.ll.append(5)
+        self.assertEqual(self.ll.find_middle_of_list().value, 3)
+
+    @unittest.SkipTest
+    def test_ll_has_loop(self):
+        pass
+
+    def test_convert_binary_to_int(self):
+        self.assertEqual(self.ll.convert_binary_to_int(), 1)
+        # Adding more 0 & 1 to test
+        self.ll.append(0)
+        self.ll.append(1)
+        self.assertEqual(self.ll.convert_binary_to_int(), 5)
