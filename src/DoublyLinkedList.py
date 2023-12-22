@@ -1,12 +1,14 @@
 import void
 
+from src.stacks.StackUsingLinkedList import ListNode
+
 
 class DNode:
     def __init__(self, val=-1):
         """ Creates the Node for Doubly Linked List """
         self.val = val
-        self.prev = None
         self.next = None
+        self.prev = None
 
 class DoublyLinkedList:
 
@@ -37,5 +39,23 @@ class DoublyLinkedList:
             new_node.prev = self.tail
             self.tail = new_node
         self.length += 1
+
+    def pop(self):
+        # handling no nodes
+        if self.head is None or self.length == 0:
+            return None
+        temp = self.tail
+        # handling single Node
+        if self.head.next is None or self.length == 1:
+            self.head = None
+            self.tail = None
+        else:
+            self.tail = self.tail.prev
+            self.tail.next = None
+            temp.prev = None
+        self.length -= 1
+
+        return temp
+
 
 
