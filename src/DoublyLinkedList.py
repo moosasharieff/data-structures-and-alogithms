@@ -87,3 +87,25 @@ class DoublyLinkedList:
             temp.next = None
         self.length -= 1
         return self.head
+
+    def get(self, index):
+        """
+        # Returns the value of the mentioned index
+        :param index:
+        :return: None or ListNode
+        """
+        # Addressing out of range
+        if index < 0 or index >= self.length:
+            return None
+
+        # Optimising iteration
+        temp = self.head
+        if index < self.length // 2:
+            for _ in range(index):
+                temp = temp.next
+        else:
+            # Traversing from tail to get till index as that is closest.
+            temp = self.tail
+            for _ in range(self.length -1, index, -1):
+                temp = temp.prev
+        return temp

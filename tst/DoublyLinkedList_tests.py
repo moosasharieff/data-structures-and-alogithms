@@ -76,3 +76,20 @@ class Test_Doubly_LinkedList(TestCase):
         self.assertEqual(self.dll.head.val, 1)
         self.assertAlmostEqual(self.dll.head.next.val, 2)
         self.assertEqual(self.dll.tail.val, 3)
+
+    def test_get(self):
+        # Out of range index
+        self.assertIsNone(self.dll.get(2))
+        self.assertIsNone(self.dll.get(1))
+
+        # When there is only 1 Node
+        self.assertEqual(self.dll.get(0).val, 1)
+
+        # When there are 1+ Nodes
+        self.dll.append(2)
+        self.dll.append(3)
+        self.dll.append(4)
+        # close index
+        self.assertEqual(self.dll.get(1).val, 2)
+        # Far index
+        self.assertEqual(self.dll.get(2).val, 3)
