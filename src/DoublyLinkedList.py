@@ -30,7 +30,7 @@ class DoublyLinkedList:
     def append(self, val):
         """ This method append value to an existing Doubly Linked List
         or creates a new Doubly Linked List if Head is None """
-        new_node = DoublyLinkedList(val)
+        new_node = DNode(val)
         if not self.head:
             self.head = new_node
             self.tail = new_node
@@ -58,4 +58,15 @@ class DoublyLinkedList:
         return temp
 
 
-
+    def prepend(self, val):
+        new_node = DNode(val)
+        # When no node
+        if self.head is None or self.length == 0:
+            self.head = new_node
+            self.tail = new_node
+        else:
+            # When 1 or more nodes
+            new_node.next = self.head
+            self.head.prev = new_node
+            self.head = new_node
+        self.length += 1
