@@ -93,3 +93,32 @@ class Test_Doubly_LinkedList(TestCase):
         self.assertEqual(self.dll.get(1).val, 2)
         # Far index
         self.assertEqual(self.dll.get(2).val, 3)
+
+    def test_set_value(self):
+        """
+        # Testing out of range
+        # Testing 1st index value
+        # Testing last index value
+        # Testing middle index value
+        """
+        # Testing out of range
+        self.assertIsNone(self.dll.get(2))
+        self.assertIsNone(self.dll.get(1))
+
+        # Testing 1st index value
+        self.assertFalse(self.dll.set_value(1, 4))
+        self.assertTrue(self.dll.set_value(0, 5))
+        self.assertEqual(self.dll.head.val, 5)
+
+        # Testing last index value
+        self.append(4)
+        self.append(3)
+        self.append(2)
+        self.append(1)
+        self.assertTrue(self.dll.set_value(4, 9))
+        self.assertEqual(self.dll.get(4), 9)
+
+        # Testing middle index value
+        self.assertTrue(self.dll.set_value(2, 7))
+        self.assertEqual(self.dll.get(2), 7)
+
