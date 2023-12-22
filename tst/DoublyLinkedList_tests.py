@@ -111,10 +111,10 @@ class Test_Doubly_LinkedList(TestCase):
         self.assertEqual(self.dll.head.val, 5)
 
         # Testing last index value
-        self.append(4)
-        self.append(3)
-        self.append(2)
-        self.append(1)
+        self.dll.append(4)
+        self.dll.append(3)
+        self.dll.append(2)
+        self.dll.append(1)
         self.assertTrue(self.dll.set_value(4, 9))
         self.assertEqual(self.dll.get(4), 9)
 
