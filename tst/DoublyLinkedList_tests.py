@@ -57,3 +57,22 @@ class Test_Doubly_LinkedList(TestCase):
         self.dll.prepend(1)
         self.assertEqual(self.dll.head.val, 1)
         self.assertEqual(self.dll.tail.val, 2)
+
+    def test_pop_first(self):
+        # When there is 1 node
+        self.assertEqual(self.dll.head.val, 1)
+        self.dll.pop_first()
+        self.assertIsNone(self.dll.head)
+        self.assertIsNone(self.dll.tail)
+
+        # When no node
+        self.assertIsNone(self.dll.pop_first())
+
+        # When 1+ more nodes
+        self.dll.append(1)
+        self.dll.append(2)
+        self.dll.append(3)
+        self.assertIsNotNone(self.dll)
+        self.assertEqual(self.dll.head.val, 1)
+        self.assertAlmostEqual(self.dll.head.next.val, 2)
+        self.assertEqual(self.dll.tail.val, 3)
