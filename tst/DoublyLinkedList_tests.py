@@ -35,14 +35,15 @@ class Test_Doubly_LinkedList(TestCase):
         self.dll.append(1)
         self.dll.append(2)
         self.dll.append(3)
-        self.assertEqual(self.dll.head.head.val, 1)
-        self.assertEqual(self.dll.head.next.head.val, 2)
-        self.assertEqual(self.dll.tail.head.val, 3)
+        self.dll.print()
+        self.assertEqual(self.dll.head.val, 1)
+        self.assertEqual(self.dll.head.next.val, 2)
+        self.assertEqual(self.dll.tail.val, 3)
         self.dll.pop()
         self.assertIsNotNone(self.dll)
-        self.assertEqual(self.dll.head.head.val, 1)
+        self.assertEqual(self.dll.head.val, 1)
         self.assertIsNotNone(self.dll.tail)
-        self.assertEqual(self.dll.tail.head.val, 2)
+        self.assertEqual(self.dll.tail.val, 2)
 
     def test_prepend(self):
         # Making sure it has no nodes
@@ -116,11 +117,11 @@ class Test_Doubly_LinkedList(TestCase):
         self.dll.append(2)
         self.dll.append(1)
         self.assertTrue(self.dll.set_value(4, 9))
-        self.assertEqual(self.dll.get(4), 9)
+        self.assertEqual(self.dll.get(4).val, 9)
 
         # Testing middle index value
         self.assertTrue(self.dll.set_value(2, 7))
-        self.assertEqual(self.dll.get(2), 7)
+        self.assertEqual(self.dll.get(2).val, 7)
 
     def test_insert(self):
         """
@@ -152,3 +153,29 @@ class Test_Doubly_LinkedList(TestCase):
         # 4. Adding node in the middle
         self.dll.insert(2, 9)
         self.assertEqual(self.dll.get(2).val, 9)
+
+    def test_remove(self):
+        """
+        # Conditions to consider when testing :
+        1. Out of range
+        2. Remvoe index 0
+        3. Remove last index
+        4. Remove node in the middle
+
+        :param index:
+        :return: Node
+        """
+        # 1. Out of range
+        self.assertIsNone(self.dll.remove(-1))
+        self.assertIsNone(self.dll.remove(2))
+
+        # 2. Remvoe index 0
+        self.assertIsNone(self.dll.remove(1))
+        self.assertIsNotNone(self.dll.remove(0))
+
+        # 3. Remove last index
+        self.dll.append(1)
+        self.dll.append(2)
+        self.dll.append(3)
+        self.dll.print()
+        self.assertEqual(self.dll.remove(1).val, 2)

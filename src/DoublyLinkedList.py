@@ -86,7 +86,7 @@ class DoublyLinkedList:
             self.head.prev = None
             temp.next = None
         self.length -= 1
-        return self.head
+        return temp
 
     def get(self, index):
         """
@@ -152,3 +152,37 @@ class DoublyLinkedList:
             self.length += 1
         return True
 
+    def remove(self, index):
+        """
+        # Conditions to consider:
+        1. Out of range
+        2. Remvoe index 0
+        3. Remove last index
+        4. Remove node in the middle
+
+        :param index:
+        :return: Node
+        """
+        # 1. Out of range
+        if index < 0 or index >= self.length:
+            return None
+
+        # 2. Remvoe index 0
+        if index == 0:
+            return self.pop_first()
+
+        # 3. Remove last index
+        if index == self.length -1:
+            return self.pop()
+
+        # 4. Remove node in the middle
+        # Mehthod: 1
+        temp = self.get(index)
+        temp.next.prev = temp.prev
+        temp.prev.next = temp.next
+        temp.next = None
+        temp.prev = None
+
+        self.length -= 1
+
+        return temp
