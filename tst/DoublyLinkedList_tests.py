@@ -122,3 +122,33 @@ class Test_Doubly_LinkedList(TestCase):
         self.assertTrue(self.dll.set_value(2, 7))
         self.assertEqual(self.dll.get(2), 7)
 
+    def test_insert(self):
+        """
+        # Conditions to consider when Testing:
+        1. Out of range
+        2. Append
+        3. Prepend
+        4. Adding node in the middle
+        """
+        # Cleaning LinkedList
+        self.dll.pop()
+        self.assertIsNone(self.dll.head)
+        self.assertIsNone(self.dll.tail)
+
+        # 1. Out of range
+        self.assertFalse(self.dll.insert(-1, 2))
+        self.assertFalse(self.dll.insert(1, 3))
+
+        # 2. Append
+        self.assertTrue(self.dll.insert(0, 5))
+        self.assertTrue(self.dll.insert(0, 4))
+        self.assertEqual(self.dll.get(0).val, 4)
+        self.assertEqual(self.dll.get(1).val, 5)
+
+        # 3. Prepend
+        self.assertTrue(self.dll.insert(2, 6))
+        self.assertEqual(self.dll.get(2).val, 6)
+
+        # 4. Adding node in the middle
+        self.dll.insert(2, 9)
+        self.assertEqual(self.dll.get(2).val, 9)

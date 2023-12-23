@@ -116,3 +116,39 @@ class DoublyLinkedList:
             temp.val = value
             return True
         return False
+
+    def insert(self, index:int, value:int) -> bool:
+        """
+        # Conditions to consider:
+        1. Out of range
+        2. Append
+        3. Prepend
+        4. Adding node in the middle
+
+        :param index:
+        :param value:
+        :return: bool
+        """
+        # 1. Out of range
+        if index < 0 or index > self.length:
+            return False
+        # 2. Appending
+        if index == self.length:
+            self.append(value)
+        # 3. Prepend
+        if index == 0:
+            self.prepend(value)
+        # 4. Adding node in the middle
+        else:
+            new_node = DNode(value)
+            before = self.get(index -1)
+            after = before.next
+
+            new_node.prev = before
+            new_node.next = after
+            before.next = new_node
+            after.prev = new_node
+
+            self.length += 1
+        return True
+
