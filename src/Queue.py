@@ -20,3 +20,15 @@ class Queue:
         while temp:
             print(temp.value)
             temp = temp.next
+
+    def enqueue(self, value):
+        """ Adds value to the queue """
+        new_node = Node(value)
+        # if the queue is empty
+        if not self.first:
+            self.first = new_node
+            self.last = new_node
+        else:
+            self.last.next = new_node
+            self.last = new_node
+        self.length += 1

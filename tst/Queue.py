@@ -12,3 +12,9 @@ class Test_Queue(TestCase):
         self.assertIsNotNone(self.myQueue)
         self.assertEqual(self.myQueue.first.value, 1)
 
+    def test_enqueue(self):
+        self.assertEqual(self.myQueue.first.value, 1)
+        self.assertEqual(self.myQueue.last.value, 1)
+        # Adding value to the queue
+        self.myQueue.enqueue(2)
+        self.assertEqual(self.myQueue.last.value, 2)
