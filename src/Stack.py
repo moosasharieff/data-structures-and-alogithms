@@ -32,4 +32,13 @@ class Stack:
         self.height += 1
 
 
-
+    def pop(self):
+        """ Removes the 1st node from the Stack """
+        # if Stack is empty
+        if not self.top:
+            return None
+        # if Stack contains Nodes
+        temp = self.top
+        self.top = self.top.next
+        temp.next = None
+        return temp # as poped value is still present in temp
