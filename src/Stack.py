@@ -19,5 +19,17 @@ class Stack:
             print(temp.value)
             temp = temp.next
 
+    def push(self, value):
+        """ Adds or appends value to the Stack """
+        new_node = Node(value)
+        # if Stack is empty
+        if not self.top:
+            self.top = new_node
+        else:
+            # Appending value to existing Stack
+            new_node.next = self.top
+            self.top = new_node
+        self.height += 1
+
 
 
