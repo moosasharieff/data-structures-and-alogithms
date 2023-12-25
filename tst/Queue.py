@@ -18,3 +18,25 @@ class Test_Queue(TestCase):
         # Adding value to the queue
         self.myQueue.enqueue(2)
         self.assertEqual(self.myQueue.last.value, 2)
+
+
+    def test_dequeue(self):
+        """ Remove the value from the queue
+        Things to consider :
+        1. Testing when Queue is empty
+        2. Testing when Queue has only 1 node
+        3. Testing when Queue has 1+ nodes
+        """
+        self.myQueue.enqueue(2)
+        self.myQueue.enqueue(3)
+        self.assertEqual(self.myQueue.first.value, 1)
+        self.assertEqual(self.myQueue.last.value, 3)
+
+        # Testing dequeue() method
+        # 3. Testing when Queue has 1+ nodes
+        self.assertEqual(self.myQueue.dequeue().value, 1)
+        self.assertEqual(self.myQueue.dequeue().value, 2)
+        # 2. Testing when Queue has only 1 node
+        self.assertEqual(self.myQueue.dequeue().value, 3)
+        # 1. Testing when Queue is empty
+        self.assertIsNone(self.myQueue.dequeue())

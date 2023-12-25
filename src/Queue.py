@@ -29,6 +29,30 @@ class Queue:
             self.first = new_node
             self.last = new_node
         else:
+            # Adding value to queue having values
             self.last.next = new_node
             self.last = new_node
         self.length += 1
+
+    def dequeue(self):
+        """ Remove the value from the queue
+        Things to consider :
+        1. Removing when Queue is empty
+        2. Removing when Queue has only 1 node
+        3. Removing when Queue has 1+ nodes
+        """
+        # 1. Removing when Queue is empty
+        if not self.first or self.length == 0:
+            return None
+
+        temp = self.first
+        # 2. Removing when Queue has only 1 node
+        if not self.first.next or self.length == 1:
+            self.first = None
+            self.last = None
+        else:
+            # 3. Removing when Queue has 1+ nodes
+            self.first = self.first.next
+            temp.next = None
+        self.length -= 1
+        return temp
