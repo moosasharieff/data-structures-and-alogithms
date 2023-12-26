@@ -41,4 +41,5 @@ class Stack:
         temp = self.top
         self.top = self.top.next
         temp.next = None
+        self.height -= 1
         return temp # as poped value is still present in temp
