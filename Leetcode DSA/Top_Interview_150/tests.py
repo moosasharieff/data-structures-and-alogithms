@@ -2,6 +2,7 @@
 import unittest
 from problem_001__No_88_merge_sort import Merge_Sort
 from problem_002__No_27_Remove_Element import Remove_Element
+from problem_003__No_26_Remove_Duplicates_from_Sorted_Array import Remove_Duplicate
 
 class TestLeetcodeProblems(unittest.TestCase):
 
@@ -37,6 +38,15 @@ class TestLeetcodeProblems(unittest.TestCase):
         self.assertEqual(q.question1(nums2, val2), 2)
 
 
+    def test_remove_duplicates(self):
+        nums = [0, 0, 1, 1, 1, 2, 2, 3, 3, 4]
+
+        # Instanstiation
+        q = Remove_Duplicate()
+
+        # Test case
+        k = q.logic(nums)
+        self.assertEqual(nums[:k], [0, 1, 2, 3, 4])
 
 
 if __name__ == "__main__":
